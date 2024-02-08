@@ -1,0 +1,709 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> WHILE expression statements END
+Rule 2     statement -> UNTIL expression DO statements END
+Rule 3     statements -> statement statements
+Rule 4     statements -> statement
+Rule 5     statements -> empty
+Rule 6     expression -> expression PLUS expression
+Rule 7     expression -> IDENTIFIER
+Rule 8     expression -> NUMBER
+Rule 9     expression -> LPAREN expression RPAREN
+Rule 10    expression -> expression EQUALS expression
+Rule 11    expression -> expression - expression
+Rule 12    expression -> expression * expression
+Rule 13    expression -> expression / expression
+Rule 14    statement -> PUTS STRING
+Rule 15    statement -> IDENTIFIER EQUALS_TO expression
+Rule 16    empty -> <empty>
+
+Terminals, with rules where they appear
+
+*                    : 12
+-                    : 11
+/                    : 13
+DO                   : 2
+END                  : 1 2
+EQUALS               : 10
+EQUALS_TO            : 15
+IDENTIFIER           : 7 15
+LPAREN               : 9
+NUMBER               : 8
+PLUS                 : 6
+PUTS                 : 14
+RPAREN               : 9
+STRING               : 14
+UNTIL                : 2
+WHILE                : 1
+error                : 
+
+Nonterminals, with rules where they appear
+
+empty                : 5
+expression           : 1 2 6 6 9 10 10 11 11 12 12 13 13 15
+statement            : 3 4 0
+statements           : 1 2 3
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . WHILE expression statements END
+    (2) statement -> . UNTIL expression DO statements END
+    (14) statement -> . PUTS STRING
+    (15) statement -> . IDENTIFIER EQUALS_TO expression
+
+    WHILE           shift and go to state 2
+    UNTIL           shift and go to state 3
+    PUTS            shift and go to state 4
+    IDENTIFIER      shift and go to state 5
+
+    statement                      shift and go to state 1
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> WHILE . expression statements END
+    (6) expression -> . expression PLUS expression
+    (7) expression -> . IDENTIFIER
+    (8) expression -> . NUMBER
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . expression EQUALS expression
+    (11) expression -> . expression - expression
+    (12) expression -> . expression * expression
+    (13) expression -> . expression / expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 9
+
+    expression                     shift and go to state 6
+
+state 3
+
+    (2) statement -> UNTIL . expression DO statements END
+    (6) expression -> . expression PLUS expression
+    (7) expression -> . IDENTIFIER
+    (8) expression -> . NUMBER
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . expression EQUALS expression
+    (11) expression -> . expression - expression
+    (12) expression -> . expression * expression
+    (13) expression -> . expression / expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 9
+
+    expression                     shift and go to state 10
+
+state 4
+
+    (14) statement -> PUTS . STRING
+
+    STRING          shift and go to state 11
+
+
+state 5
+
+    (15) statement -> IDENTIFIER . EQUALS_TO expression
+
+    EQUALS_TO       shift and go to state 12
+
+
+state 6
+
+    (1) statement -> WHILE expression . statements END
+    (6) expression -> expression . PLUS expression
+    (10) expression -> expression . EQUALS expression
+    (11) expression -> expression . - expression
+    (12) expression -> expression . * expression
+    (13) expression -> expression . / expression
+    (3) statements -> . statement statements
+    (4) statements -> . statement
+    (5) statements -> . empty
+    (1) statement -> . WHILE expression statements END
+    (2) statement -> . UNTIL expression DO statements END
+    (14) statement -> . PUTS STRING
+    (15) statement -> . IDENTIFIER EQUALS_TO expression
+    (16) empty -> .
+
+    PLUS            shift and go to state 14
+    EQUALS          shift and go to state 15
+    -               shift and go to state 16
+    *               shift and go to state 17
+    /               shift and go to state 18
+    WHILE           shift and go to state 2
+    UNTIL           shift and go to state 3
+    PUTS            shift and go to state 4
+    IDENTIFIER      shift and go to state 5
+    END             reduce using rule 16 (empty -> .)
+
+    statements                     shift and go to state 13
+    statement                      shift and go to state 19
+    empty                          shift and go to state 20
+
+state 7
+
+    (7) expression -> IDENTIFIER .
+
+    PLUS            reduce using rule 7 (expression -> IDENTIFIER .)
+    EQUALS          reduce using rule 7 (expression -> IDENTIFIER .)
+    -               reduce using rule 7 (expression -> IDENTIFIER .)
+    *               reduce using rule 7 (expression -> IDENTIFIER .)
+    /               reduce using rule 7 (expression -> IDENTIFIER .)
+    WHILE           reduce using rule 7 (expression -> IDENTIFIER .)
+    UNTIL           reduce using rule 7 (expression -> IDENTIFIER .)
+    PUTS            reduce using rule 7 (expression -> IDENTIFIER .)
+    IDENTIFIER      reduce using rule 7 (expression -> IDENTIFIER .)
+    END             reduce using rule 7 (expression -> IDENTIFIER .)
+    DO              reduce using rule 7 (expression -> IDENTIFIER .)
+    RPAREN          reduce using rule 7 (expression -> IDENTIFIER .)
+    $end            reduce using rule 7 (expression -> IDENTIFIER .)
+
+
+state 8
+
+    (8) expression -> NUMBER .
+
+    PLUS            reduce using rule 8 (expression -> NUMBER .)
+    EQUALS          reduce using rule 8 (expression -> NUMBER .)
+    -               reduce using rule 8 (expression -> NUMBER .)
+    *               reduce using rule 8 (expression -> NUMBER .)
+    /               reduce using rule 8 (expression -> NUMBER .)
+    WHILE           reduce using rule 8 (expression -> NUMBER .)
+    UNTIL           reduce using rule 8 (expression -> NUMBER .)
+    PUTS            reduce using rule 8 (expression -> NUMBER .)
+    IDENTIFIER      reduce using rule 8 (expression -> NUMBER .)
+    END             reduce using rule 8 (expression -> NUMBER .)
+    DO              reduce using rule 8 (expression -> NUMBER .)
+    RPAREN          reduce using rule 8 (expression -> NUMBER .)
+    $end            reduce using rule 8 (expression -> NUMBER .)
+
+
+state 9
+
+    (9) expression -> LPAREN . expression RPAREN
+    (6) expression -> . expression PLUS expression
+    (7) expression -> . IDENTIFIER
+    (8) expression -> . NUMBER
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . expression EQUALS expression
+    (11) expression -> . expression - expression
+    (12) expression -> . expression * expression
+    (13) expression -> . expression / expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 9
+
+    expression                     shift and go to state 21
+
+state 10
+
+    (2) statement -> UNTIL expression . DO statements END
+    (6) expression -> expression . PLUS expression
+    (10) expression -> expression . EQUALS expression
+    (11) expression -> expression . - expression
+    (12) expression -> expression . * expression
+    (13) expression -> expression . / expression
+
+    DO              shift and go to state 22
+    PLUS            shift and go to state 14
+    EQUALS          shift and go to state 15
+    -               shift and go to state 16
+    *               shift and go to state 17
+    /               shift and go to state 18
+
+
+state 11
+
+    (14) statement -> PUTS STRING .
+
+    $end            reduce using rule 14 (statement -> PUTS STRING .)
+    WHILE           reduce using rule 14 (statement -> PUTS STRING .)
+    UNTIL           reduce using rule 14 (statement -> PUTS STRING .)
+    PUTS            reduce using rule 14 (statement -> PUTS STRING .)
+    IDENTIFIER      reduce using rule 14 (statement -> PUTS STRING .)
+    END             reduce using rule 14 (statement -> PUTS STRING .)
+
+
+state 12
+
+    (15) statement -> IDENTIFIER EQUALS_TO . expression
+    (6) expression -> . expression PLUS expression
+    (7) expression -> . IDENTIFIER
+    (8) expression -> . NUMBER
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . expression EQUALS expression
+    (11) expression -> . expression - expression
+    (12) expression -> . expression * expression
+    (13) expression -> . expression / expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 9
+
+    expression                     shift and go to state 23
+
+state 13
+
+    (1) statement -> WHILE expression statements . END
+
+    END             shift and go to state 24
+
+
+state 14
+
+    (6) expression -> expression PLUS . expression
+    (6) expression -> . expression PLUS expression
+    (7) expression -> . IDENTIFIER
+    (8) expression -> . NUMBER
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . expression EQUALS expression
+    (11) expression -> . expression - expression
+    (12) expression -> . expression * expression
+    (13) expression -> . expression / expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 9
+
+    expression                     shift and go to state 25
+
+state 15
+
+    (10) expression -> expression EQUALS . expression
+    (6) expression -> . expression PLUS expression
+    (7) expression -> . IDENTIFIER
+    (8) expression -> . NUMBER
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . expression EQUALS expression
+    (11) expression -> . expression - expression
+    (12) expression -> . expression * expression
+    (13) expression -> . expression / expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 9
+
+    expression                     shift and go to state 26
+
+state 16
+
+    (11) expression -> expression - . expression
+    (6) expression -> . expression PLUS expression
+    (7) expression -> . IDENTIFIER
+    (8) expression -> . NUMBER
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . expression EQUALS expression
+    (11) expression -> . expression - expression
+    (12) expression -> . expression * expression
+    (13) expression -> . expression / expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 9
+
+    expression                     shift and go to state 27
+
+state 17
+
+    (12) expression -> expression * . expression
+    (6) expression -> . expression PLUS expression
+    (7) expression -> . IDENTIFIER
+    (8) expression -> . NUMBER
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . expression EQUALS expression
+    (11) expression -> . expression - expression
+    (12) expression -> . expression * expression
+    (13) expression -> . expression / expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 9
+
+    expression                     shift and go to state 28
+
+state 18
+
+    (13) expression -> expression / . expression
+    (6) expression -> . expression PLUS expression
+    (7) expression -> . IDENTIFIER
+    (8) expression -> . NUMBER
+    (9) expression -> . LPAREN expression RPAREN
+    (10) expression -> . expression EQUALS expression
+    (11) expression -> . expression - expression
+    (12) expression -> . expression * expression
+    (13) expression -> . expression / expression
+
+    IDENTIFIER      shift and go to state 7
+    NUMBER          shift and go to state 8
+    LPAREN          shift and go to state 9
+
+    expression                     shift and go to state 29
+
+state 19
+
+    (3) statements -> statement . statements
+    (4) statements -> statement .
+    (3) statements -> . statement statements
+    (4) statements -> . statement
+    (5) statements -> . empty
+    (1) statement -> . WHILE expression statements END
+    (2) statement -> . UNTIL expression DO statements END
+    (14) statement -> . PUTS STRING
+    (15) statement -> . IDENTIFIER EQUALS_TO expression
+    (16) empty -> .
+
+  ! reduce/reduce conflict for END resolved using rule 4 (statements -> statement .)
+    END             reduce using rule 4 (statements -> statement .)
+    WHILE           shift and go to state 2
+    UNTIL           shift and go to state 3
+    PUTS            shift and go to state 4
+    IDENTIFIER      shift and go to state 5
+
+  ! END             [ reduce using rule 16 (empty -> .) ]
+
+    statement                      shift and go to state 19
+    statements                     shift and go to state 30
+    empty                          shift and go to state 20
+
+state 20
+
+    (5) statements -> empty .
+
+    END             reduce using rule 5 (statements -> empty .)
+
+
+state 21
+
+    (9) expression -> LPAREN expression . RPAREN
+    (6) expression -> expression . PLUS expression
+    (10) expression -> expression . EQUALS expression
+    (11) expression -> expression . - expression
+    (12) expression -> expression . * expression
+    (13) expression -> expression . / expression
+
+    RPAREN          shift and go to state 31
+    PLUS            shift and go to state 14
+    EQUALS          shift and go to state 15
+    -               shift and go to state 16
+    *               shift and go to state 17
+    /               shift and go to state 18
+
+
+state 22
+
+    (2) statement -> UNTIL expression DO . statements END
+    (3) statements -> . statement statements
+    (4) statements -> . statement
+    (5) statements -> . empty
+    (1) statement -> . WHILE expression statements END
+    (2) statement -> . UNTIL expression DO statements END
+    (14) statement -> . PUTS STRING
+    (15) statement -> . IDENTIFIER EQUALS_TO expression
+    (16) empty -> .
+
+    WHILE           shift and go to state 2
+    UNTIL           shift and go to state 3
+    PUTS            shift and go to state 4
+    IDENTIFIER      shift and go to state 5
+    END             reduce using rule 16 (empty -> .)
+
+    statements                     shift and go to state 32
+    statement                      shift and go to state 19
+    empty                          shift and go to state 20
+
+state 23
+
+    (15) statement -> IDENTIFIER EQUALS_TO expression .
+    (6) expression -> expression . PLUS expression
+    (10) expression -> expression . EQUALS expression
+    (11) expression -> expression . - expression
+    (12) expression -> expression . * expression
+    (13) expression -> expression . / expression
+
+    $end            reduce using rule 15 (statement -> IDENTIFIER EQUALS_TO expression .)
+    WHILE           reduce using rule 15 (statement -> IDENTIFIER EQUALS_TO expression .)
+    UNTIL           reduce using rule 15 (statement -> IDENTIFIER EQUALS_TO expression .)
+    PUTS            reduce using rule 15 (statement -> IDENTIFIER EQUALS_TO expression .)
+    IDENTIFIER      reduce using rule 15 (statement -> IDENTIFIER EQUALS_TO expression .)
+    END             reduce using rule 15 (statement -> IDENTIFIER EQUALS_TO expression .)
+    PLUS            shift and go to state 14
+    EQUALS          shift and go to state 15
+    -               shift and go to state 16
+    *               shift and go to state 17
+    /               shift and go to state 18
+
+
+state 24
+
+    (1) statement -> WHILE expression statements END .
+
+    $end            reduce using rule 1 (statement -> WHILE expression statements END .)
+    WHILE           reduce using rule 1 (statement -> WHILE expression statements END .)
+    UNTIL           reduce using rule 1 (statement -> WHILE expression statements END .)
+    PUTS            reduce using rule 1 (statement -> WHILE expression statements END .)
+    IDENTIFIER      reduce using rule 1 (statement -> WHILE expression statements END .)
+    END             reduce using rule 1 (statement -> WHILE expression statements END .)
+
+
+state 25
+
+    (6) expression -> expression PLUS expression .
+    (6) expression -> expression . PLUS expression
+    (10) expression -> expression . EQUALS expression
+    (11) expression -> expression . - expression
+    (12) expression -> expression . * expression
+    (13) expression -> expression . / expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+    WHILE           reduce using rule 6 (expression -> expression PLUS expression .)
+    UNTIL           reduce using rule 6 (expression -> expression PLUS expression .)
+    PUTS            reduce using rule 6 (expression -> expression PLUS expression .)
+    IDENTIFIER      reduce using rule 6 (expression -> expression PLUS expression .)
+    END             reduce using rule 6 (expression -> expression PLUS expression .)
+    DO              reduce using rule 6 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 6 (expression -> expression PLUS expression .)
+    $end            reduce using rule 6 (expression -> expression PLUS expression .)
+    PLUS            shift and go to state 14
+    EQUALS          shift and go to state 15
+    -               shift and go to state 16
+    *               shift and go to state 17
+    /               shift and go to state 18
+
+  ! PLUS            [ reduce using rule 6 (expression -> expression PLUS expression .) ]
+  ! EQUALS          [ reduce using rule 6 (expression -> expression PLUS expression .) ]
+  ! -               [ reduce using rule 6 (expression -> expression PLUS expression .) ]
+  ! *               [ reduce using rule 6 (expression -> expression PLUS expression .) ]
+  ! /               [ reduce using rule 6 (expression -> expression PLUS expression .) ]
+
+
+state 26
+
+    (10) expression -> expression EQUALS expression .
+    (6) expression -> expression . PLUS expression
+    (10) expression -> expression . EQUALS expression
+    (11) expression -> expression . - expression
+    (12) expression -> expression . * expression
+    (13) expression -> expression . / expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+    WHILE           reduce using rule 10 (expression -> expression EQUALS expression .)
+    UNTIL           reduce using rule 10 (expression -> expression EQUALS expression .)
+    PUTS            reduce using rule 10 (expression -> expression EQUALS expression .)
+    IDENTIFIER      reduce using rule 10 (expression -> expression EQUALS expression .)
+    END             reduce using rule 10 (expression -> expression EQUALS expression .)
+    DO              reduce using rule 10 (expression -> expression EQUALS expression .)
+    RPAREN          reduce using rule 10 (expression -> expression EQUALS expression .)
+    $end            reduce using rule 10 (expression -> expression EQUALS expression .)
+    PLUS            shift and go to state 14
+    EQUALS          shift and go to state 15
+    -               shift and go to state 16
+    *               shift and go to state 17
+    /               shift and go to state 18
+
+  ! PLUS            [ reduce using rule 10 (expression -> expression EQUALS expression .) ]
+  ! EQUALS          [ reduce using rule 10 (expression -> expression EQUALS expression .) ]
+  ! -               [ reduce using rule 10 (expression -> expression EQUALS expression .) ]
+  ! *               [ reduce using rule 10 (expression -> expression EQUALS expression .) ]
+  ! /               [ reduce using rule 10 (expression -> expression EQUALS expression .) ]
+
+
+state 27
+
+    (11) expression -> expression - expression .
+    (6) expression -> expression . PLUS expression
+    (10) expression -> expression . EQUALS expression
+    (11) expression -> expression . - expression
+    (12) expression -> expression . * expression
+    (13) expression -> expression . / expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+    WHILE           reduce using rule 11 (expression -> expression - expression .)
+    UNTIL           reduce using rule 11 (expression -> expression - expression .)
+    PUTS            reduce using rule 11 (expression -> expression - expression .)
+    IDENTIFIER      reduce using rule 11 (expression -> expression - expression .)
+    END             reduce using rule 11 (expression -> expression - expression .)
+    DO              reduce using rule 11 (expression -> expression - expression .)
+    RPAREN          reduce using rule 11 (expression -> expression - expression .)
+    $end            reduce using rule 11 (expression -> expression - expression .)
+    PLUS            shift and go to state 14
+    EQUALS          shift and go to state 15
+    -               shift and go to state 16
+    *               shift and go to state 17
+    /               shift and go to state 18
+
+  ! PLUS            [ reduce using rule 11 (expression -> expression - expression .) ]
+  ! EQUALS          [ reduce using rule 11 (expression -> expression - expression .) ]
+  ! -               [ reduce using rule 11 (expression -> expression - expression .) ]
+  ! *               [ reduce using rule 11 (expression -> expression - expression .) ]
+  ! /               [ reduce using rule 11 (expression -> expression - expression .) ]
+
+
+state 28
+
+    (12) expression -> expression * expression .
+    (6) expression -> expression . PLUS expression
+    (10) expression -> expression . EQUALS expression
+    (11) expression -> expression . - expression
+    (12) expression -> expression . * expression
+    (13) expression -> expression . / expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+    WHILE           reduce using rule 12 (expression -> expression * expression .)
+    UNTIL           reduce using rule 12 (expression -> expression * expression .)
+    PUTS            reduce using rule 12 (expression -> expression * expression .)
+    IDENTIFIER      reduce using rule 12 (expression -> expression * expression .)
+    END             reduce using rule 12 (expression -> expression * expression .)
+    DO              reduce using rule 12 (expression -> expression * expression .)
+    RPAREN          reduce using rule 12 (expression -> expression * expression .)
+    $end            reduce using rule 12 (expression -> expression * expression .)
+    PLUS            shift and go to state 14
+    EQUALS          shift and go to state 15
+    -               shift and go to state 16
+    *               shift and go to state 17
+    /               shift and go to state 18
+
+  ! PLUS            [ reduce using rule 12 (expression -> expression * expression .) ]
+  ! EQUALS          [ reduce using rule 12 (expression -> expression * expression .) ]
+  ! -               [ reduce using rule 12 (expression -> expression * expression .) ]
+  ! *               [ reduce using rule 12 (expression -> expression * expression .) ]
+  ! /               [ reduce using rule 12 (expression -> expression * expression .) ]
+
+
+state 29
+
+    (13) expression -> expression / expression .
+    (6) expression -> expression . PLUS expression
+    (10) expression -> expression . EQUALS expression
+    (11) expression -> expression . - expression
+    (12) expression -> expression . * expression
+    (13) expression -> expression . / expression
+
+  ! shift/reduce conflict for PLUS resolved as shift
+  ! shift/reduce conflict for EQUALS resolved as shift
+  ! shift/reduce conflict for - resolved as shift
+  ! shift/reduce conflict for * resolved as shift
+  ! shift/reduce conflict for / resolved as shift
+    WHILE           reduce using rule 13 (expression -> expression / expression .)
+    UNTIL           reduce using rule 13 (expression -> expression / expression .)
+    PUTS            reduce using rule 13 (expression -> expression / expression .)
+    IDENTIFIER      reduce using rule 13 (expression -> expression / expression .)
+    END             reduce using rule 13 (expression -> expression / expression .)
+    DO              reduce using rule 13 (expression -> expression / expression .)
+    RPAREN          reduce using rule 13 (expression -> expression / expression .)
+    $end            reduce using rule 13 (expression -> expression / expression .)
+    PLUS            shift and go to state 14
+    EQUALS          shift and go to state 15
+    -               shift and go to state 16
+    *               shift and go to state 17
+    /               shift and go to state 18
+
+  ! PLUS            [ reduce using rule 13 (expression -> expression / expression .) ]
+  ! EQUALS          [ reduce using rule 13 (expression -> expression / expression .) ]
+  ! -               [ reduce using rule 13 (expression -> expression / expression .) ]
+  ! *               [ reduce using rule 13 (expression -> expression / expression .) ]
+  ! /               [ reduce using rule 13 (expression -> expression / expression .) ]
+
+
+state 30
+
+    (3) statements -> statement statements .
+
+    END             reduce using rule 3 (statements -> statement statements .)
+
+
+state 31
+
+    (9) expression -> LPAREN expression RPAREN .
+
+    PLUS            reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    EQUALS          reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    -               reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    *               reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    /               reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    WHILE           reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    UNTIL           reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    PUTS            reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    IDENTIFIER      reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    END             reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    DO              reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+    $end            reduce using rule 9 (expression -> LPAREN expression RPAREN .)
+
+
+state 32
+
+    (2) statement -> UNTIL expression DO statements . END
+
+    END             shift and go to state 33
+
+
+state 33
+
+    (2) statement -> UNTIL expression DO statements END .
+
+    $end            reduce using rule 2 (statement -> UNTIL expression DO statements END .)
+    WHILE           reduce using rule 2 (statement -> UNTIL expression DO statements END .)
+    UNTIL           reduce using rule 2 (statement -> UNTIL expression DO statements END .)
+    PUTS            reduce using rule 2 (statement -> UNTIL expression DO statements END .)
+    IDENTIFIER      reduce using rule 2 (statement -> UNTIL expression DO statements END .)
+    END             reduce using rule 2 (statement -> UNTIL expression DO statements END .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PLUS in state 25 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 25 resolved as shift
+WARNING: shift/reduce conflict for - in state 25 resolved as shift
+WARNING: shift/reduce conflict for * in state 25 resolved as shift
+WARNING: shift/reduce conflict for / in state 25 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 26 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 26 resolved as shift
+WARNING: shift/reduce conflict for - in state 26 resolved as shift
+WARNING: shift/reduce conflict for * in state 26 resolved as shift
+WARNING: shift/reduce conflict for / in state 26 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 27 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 27 resolved as shift
+WARNING: shift/reduce conflict for - in state 27 resolved as shift
+WARNING: shift/reduce conflict for * in state 27 resolved as shift
+WARNING: shift/reduce conflict for / in state 27 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 28 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 28 resolved as shift
+WARNING: shift/reduce conflict for - in state 28 resolved as shift
+WARNING: shift/reduce conflict for * in state 28 resolved as shift
+WARNING: shift/reduce conflict for / in state 28 resolved as shift
+WARNING: shift/reduce conflict for PLUS in state 29 resolved as shift
+WARNING: shift/reduce conflict for EQUALS in state 29 resolved as shift
+WARNING: shift/reduce conflict for - in state 29 resolved as shift
+WARNING: shift/reduce conflict for * in state 29 resolved as shift
+WARNING: shift/reduce conflict for / in state 29 resolved as shift
+WARNING: reduce/reduce conflict in state 19 resolved using rule (statements -> statement)
+WARNING: rejected rule (empty -> <empty>) in state 19
